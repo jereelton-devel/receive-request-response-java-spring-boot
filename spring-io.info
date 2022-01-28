@@ -1,0 +1,1 @@
+https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.6.3&packaging=jar&jvmVersion=11&groupId=com.receive-request-response.app&artifactId=receive-request-response-app&name=Receive%20Request%20Response%20App&description=Receive%20Request%20Response%20App&packageName=com.receive-request-response.app&dependencies=devtools,lombok,web,webflux
