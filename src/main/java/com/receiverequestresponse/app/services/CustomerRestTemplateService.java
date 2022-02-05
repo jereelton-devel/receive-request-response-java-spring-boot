@@ -1,37 +1,31 @@
 package com.receiverequestresponse.app.services;
 
 import com.receiverequestresponse.app.entities.CustomerEntity;
-import com.receiverequestresponse.app.utils.Helpers;
-import org.springframework.http.*;
+import com.receiverequestresponse.app.utils.HttpHandler;
+import net.minidev.json.JSONObject;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Service
-public class CustomerRestTemplateService {
-
-    private HttpHeaders requestHeaders() {
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setBasicAuth(Helpers
-                .extractProps()
-                .getProperty("application.basic-authorization-remote")
-                .replaceFirst("Basic ", ""));
-
-        return httpHeaders;
-
-    }
+public class CustomerRestTemplateService extends HttpHandler {
 
     private ResponseEntity<?> search(String url) {
 
-        HttpEntity<String> httpEntity = new HttpEntity<>(requestHeaders());
+        HttpEntity<String> httpEntity = new HttpEntity<>(httpRequestHeaders());
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.exchange(url, HttpMethod.GET, httpEntity, Object.class);
-        //return restTemplate.exchange(url, HttpMethod.GET, httpEntity, CustomerDTO[].class);
+
+        try {
+            return restTemplate.exchange(url, HttpMethod.GET, httpEntity, Object.class);
+        } catch (HttpServerErrorException ex) {
+            return httpRequestServerException(ex);
+        }
 
     }
 
@@ -48,26 +42,32 @@ public class CustomerRestTemplateService {
     public Object save(HttpServletRequest headers, CustomerEntity customer) {
 
         String url = "http://localhost:9009/api/customers";
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setBasicAuth(Helpers
-                .extractProps()
-                .getProperty("application.basic-authorization-remote")
-                .replaceFirst("Basic ", ""));
-
         RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<CustomerEntity> httpEntity = new HttpEntity<>(customer, httpRequestHeaders());
 
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.add("id", customer.getId());
-        map.add("name", customer.getName());
-        map.add("active", customer.getActive());
-
-        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, httpHeaders);
-
-        return restTemplate.postForObject(url, request, Object.class);
-
-        //return restTemplate.exchange(url, HttpMethod.POST, request, Object.class);
+        try {
+            return restTemplate.postForEntity(url, httpEntity, Object.class);
+        } catch (HttpServerErrorException sex) {
+            return httpRequestServerException(sex);
+        } catch (HttpClientErrorException cex) {
+            return httpRequestClientException(cex);
+        } catch (Exception gex) {
+            return null;
+        }
 
     }
+
+    public Object update(HttpServletRequest headers, String customer_id, JSONObject customer_data) {
+
+        String url = "http://localhost:9009/api/customers/"+customer_id;
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<JSONObject> httpEntity = new HttpEntity<>(customer_data, httpRequestHeaders());
+
+        try {
+            return restTemplate.exchange(url, HttpMethod.PUT, httpEntity, Object.class);
+        } catch (HttpServerErrorException ex) {
+            return httpRequestServerException(ex);
+        }
+    }
+
 }

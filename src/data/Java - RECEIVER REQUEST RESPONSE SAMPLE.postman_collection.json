@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "6fd47e58-d73d-4ca4-8386-2fe9453b3dad",
+		"name": "Java - RECEIVER REQUEST RESPONSE SAMPLE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Samples",
+			"item": [
+				{
+					"name": "Create Customer - WebClient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"f4d4957e29d874f932728e839ae3ed64\",\n    \"name\": \"Marcelo Queiroz\",\n    \"active\": \"no\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/customers/web_client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"web_client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Customer - RestTemplate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"a9cb4e9787c0c3fc4030d6078f4bfd7f\",\n    \"name\": \"Monica Ribeiro\",\n    \"active\": \"no\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/customers/rest_template",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"rest_template"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All - WebClient",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/customers/web_client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"web_client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All - Rest Template",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/customers/rest_template",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"rest_template"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Customer - WebClient",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/customers/web_client/e00507c48439d8dae2fb2e31326cc356",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"web_client",
+								"e00507c48439d8dae2fb2e31326cc356"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Customer - RestTemplate",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/customers/rest_template/a9cb4e9787c0c3fc4030d6078f4bfd7f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"rest_template",
+								"a9cb4e9787c0c3fc4030d6078f4bfd7f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer - RestTemplate",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"a9cb4e9787c0c3fc4030d6078f4bfd7f\",\n    \"name\": \"Monica Ribeiro da Silva\",\n    \"active\": \"no\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/customers/rest_template/a9cb4e9787c0c3fc4030d6078f4bfd7f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"rest_template",
+								"a9cb4e9787c0c3fc4030d6078f4bfd7f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer - WebClient",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"2dde3fe6a8887910598a75d50da97fd1\",\n    \"name\": \"Isaias Marcondes\",\n    \"active\": \"no\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/customers/web_client/2dde3fe6a8887910598a75d50da97fd1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"web_client",
+								"2dde3fe6a8887910598a75d50da97fd1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9009/api/customers/2dde3fe6a8887910598a75d50da97fd1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9009",
+							"path": [
+								"api",
+								"customers",
+								"2dde3fe6a8887910598a75d50da97fd1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fix Customer",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"active\": \"yes\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9009/api/customers/744523e0aad5d46ef0cee63e74e951f4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9009",
+							"path": [
+								"api",
+								"customers",
+								"744523e0aad5d46ef0cee63e74e951f4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

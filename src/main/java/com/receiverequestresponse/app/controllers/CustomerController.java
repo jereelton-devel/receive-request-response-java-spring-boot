@@ -77,6 +77,25 @@ public class CustomerController {
         return customerRestTemplateService.findAll(headers);
     }
 
+    /*Update - By Web Client*/
+    @PutMapping(path = "/api/customers/web_client/{customer_id}")
+    public Mono<Object> updateByWebClient(
+            HttpServletRequest headers,
+            @PathVariable("customer_id") String customer_id,
+            @Valid @RequestBody(required = false) JSONObject customer_data
+    ) {
+        return customerWebClientService.update(headers, customer_id, customer_data);
+    }
+
+    /*Update - By Rest Template*/
+    @PutMapping(path = "/api/customers/rest_template/{customer_id}")
+    public Object updateByRestTemplate(
+            HttpServletRequest headers,
+            @PathVariable("customer_id") String customer_id,
+            @Valid @RequestBody(required = false) JSONObject customer_data) {
+        return customerRestTemplateService.update(headers, customer_id, customer_data);
+    }
+
 //    private final CustomerService customerService;
 
 //    @Autowired

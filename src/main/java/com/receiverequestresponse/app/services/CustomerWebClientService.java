@@ -1,6 +1,7 @@
 package com.receiverequestresponse.app.services;
 
 import com.receiverequestresponse.app.entities.CustomerEntity;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -13,6 +14,8 @@ import java.time.Duration;
 @Service
 public class CustomerWebClientService {
 
+    private static final int LOCAL_TIMER = 10;
+
     @Autowired
     WebClient webClient;
 
@@ -23,7 +26,7 @@ public class CustomerWebClientService {
                 .uri("/api/customers/"+customer_id)
                 .retrieve()
                 .bodyToMono(Object.class)
-                .timeout(Duration.ofSeconds(10));
+                .timeout(Duration.ofSeconds(LOCAL_TIMER));
 
     }
 
@@ -34,7 +37,7 @@ public class CustomerWebClientService {
                 .uri("/api/customers")
                 .retrieve()
                 .bodyToFlux(Object.class)
-                .timeout(Duration.ofSeconds(10));
+                .timeout(Duration.ofSeconds(LOCAL_TIMER));
 
     }
 
@@ -46,7 +49,19 @@ public class CustomerWebClientService {
                 .body(Mono.just(customer), CustomerEntity.class)
                 .retrieve()
                 .bodyToMono(Object.class)
-                .timeout(Duration.ofSeconds(10));
+                .timeout(Duration.ofSeconds(LOCAL_TIMER));
+
+    }
+
+    public Mono<Object> update(HttpServletRequest headers, String customer_id, JSONObject customer_data) {
+
+        return webClient
+                .put()
+                .uri("/api/customers/"+customer_id)
+                .body(Mono.just(customer_data), CustomerEntity.class)
+                .retrieve()
+                .bodyToMono(Object.class)
+                .timeout(Duration.ofSeconds(LOCAL_TIMER));
 
     }
 }
