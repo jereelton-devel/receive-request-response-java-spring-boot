@@ -9,7 +9,7 @@ import java.util.Properties;
 @Service
 public class AccessControlService {
 
-    private static final Properties props = Helpers.extractProps();
+    private static final Properties props = Helpers.loadProps();
     private static final String basicAuth = props.getProperty("application.basic-authorization-local");
 
     public static Boolean authorization(HttpServletRequest headers) {

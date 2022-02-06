@@ -14,8 +14,8 @@ public class WebFluxConfig implements WebFluxConfigurer {
     @Bean
     public WebClient getWebClient() {
 
-        String baseUrlProp = Helpers.extractProps().getProperty("application.base-url-remote");
-        String basicAuth = Helpers.extractProps().getProperty("application.basic-authorization-remote");
+        String baseUrlProp = Helpers.loadProps().getProperty("application.base-url-remote");
+        String basicAuth = Helpers.loadProps().getProperty("application.basic-authorization-remote");
 
         return WebClient.builder()
                 .baseUrl(baseUrlProp)

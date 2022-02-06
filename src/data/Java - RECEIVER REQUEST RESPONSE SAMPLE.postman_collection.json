@@ -6,10 +6,10 @@
 	},
 	"item": [
 		{
-			"name": "Samples",
+			"name": "RestTemplate",
 			"item": [
 				{
-					"name": "Create Customer - WebClient",
+					"name": "Create Customer",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -21,43 +21,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"f4d4957e29d874f932728e839ae3ed64\",\n    \"name\": \"Marcelo Queiroz\",\n    \"active\": \"no\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8081/api/customers/web_client",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8081",
-							"path": [
-								"api",
-								"customers",
-								"web_client"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create Customer - RestTemplate",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\": \"a9cb4e9787c0c3fc4030d6078f4bfd7f\",\n    \"name\": \"Monica Ribeiro\",\n    \"active\": \"no\"\n}",
+							"raw": "{\n    \"id\": \"b93e370cb6ec561a01de9b62dc83bbae\",\n    \"name\": \"Carlos Pereira\",\n    \"active\": \"no\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -81,34 +45,7 @@
 					"response": []
 				},
 				{
-					"name": "Find All - WebClient",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8081/api/customers/web_client",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8081",
-							"path": [
-								"api",
-								"customers",
-								"web_client"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Find All - Rest Template",
+					"name": "Find All",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -135,7 +72,205 @@
 					"response": []
 				},
 				{
-					"name": "Find Customer - WebClient",
+					"name": "Find Customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/customers/rest_template/b93e370cb6ec561a01de9b62dc83bbae",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"rest_template",
+								"b93e370cb6ec561a01de9b62dc83bbae"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"b93e370cb6ec561a01de9b62dc83bbae\",\n    \"name\": \"Carlos Pereira Nunes\",\n    \"active\": \"no\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/customers/rest_template/b93e370cb6ec561a01de9b62dc83bbae",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"rest_template",
+								"b93e370cb6ec561a01de9b62dc83bbae"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fix Customer",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"active\": \"yes\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/customers/rest_template/b93e370cb6ec561a01de9b62dc83bbae",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"rest_template",
+								"b93e370cb6ec561a01de9b62dc83bbae"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/customers/rest_template/b93e370cb6ec561a01de9b62dc83bbae",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"rest_template",
+								"b93e370cb6ec561a01de9b62dc83bbae"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "WebClient",
+			"item": [
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"c9309ef7c0bb931b3f653f952af7d647\",\n    \"name\": \"Henrique da Silva\",\n    \"active\": \"no\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/customers/web_client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"web_client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/customers/web_client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"web_client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Customer",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -163,72 +298,7 @@
 					"response": []
 				},
 				{
-					"name": "Find Customer - RestTemplate",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8081/api/customers/rest_template/a9cb4e9787c0c3fc4030d6078f4bfd7f",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8081",
-							"path": [
-								"api",
-								"customers",
-								"rest_template",
-								"a9cb4e9787c0c3fc4030d6078f4bfd7f"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Customer - RestTemplate",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\": \"a9cb4e9787c0c3fc4030d6078f4bfd7f\",\n    \"name\": \"Monica Ribeiro da Silva\",\n    \"active\": \"no\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8081/api/customers/rest_template/a9cb4e9787c0c3fc4030d6078f4bfd7f",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8081",
-							"path": [
-								"api",
-								"customers",
-								"rest_template",
-								"a9cb4e9787c0c3fc4030d6078f4bfd7f"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Customer - WebClient",
+					"name": "Update Customer",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -265,33 +335,6 @@
 					"response": []
 				},
 				{
-					"name": "Delete Customer",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:9009/api/customers/2dde3fe6a8887910598a75d50da97fd1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9009",
-							"path": [
-								"api",
-								"customers",
-								"2dde3fe6a8887910598a75d50da97fd1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Fix Customer",
 					"request": {
 						"method": "PATCH",
@@ -312,16 +355,45 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:9009/api/customers/744523e0aad5d46ef0cee63e74e951f4",
+							"raw": "http://localhost:8081/api/customers/web_client/744523e0aad5d46ef0cee63e74e951f4",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9009",
+							"port": "8081",
 							"path": [
 								"api",
 								"customers",
+								"web_client",
 								"744523e0aad5d46ef0cee63e74e951f4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/customers/web_client/2dde3fe6a8887910598a75d50da97fd1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customers",
+								"web_client",
+								"2dde3fe6a8887910598a75d50da97fd1"
 							]
 						}
 					},

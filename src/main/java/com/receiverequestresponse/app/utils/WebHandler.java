@@ -10,14 +10,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
-public abstract class HttpHandler {
+public abstract class WebHandler {
 
     protected final JSONObject jsonResponse;
 
     @Autowired
-    protected HttpHandler() {
+    protected WebHandler() {
         this.jsonResponse = new JSONObject();
     }
 
@@ -75,7 +75,7 @@ public abstract class HttpHandler {
         return jsonMessage;
     }
 
-    protected ResponseEntity<?> httpRequestServerException(HttpServerErrorException except) {
+    protected ResponseEntity<?> webClientResponseException(WebClientResponseException except) {
         int statusCodeRaw = except.getRawStatusCode();
         String statusCode = String.valueOf(except.getStatusCode());
         String strMessage = except.getResponseBodyAsString();

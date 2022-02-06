@@ -65,7 +65,7 @@ public class Helpers {
         return jsonData;
     }
 
-    public static Properties extractProps() {
+    public static Properties loadProps() {
         Properties properties = new Properties();
 
         try {

@@ -19,7 +19,7 @@ import java.util.Properties;
 @WebAppConfiguration
 public abstract class AbstractTest {
 
-    protected final Properties props = Helpers.extractProps();
+    protected final Properties props = Helpers.loadProps();
     protected final String authRequest = props.getProperty("application.basic-authorization");
     protected final String invalidAuthRequest = props.getProperty("application.test.basic-authorization-invalid");
     protected final String uriBaseTest = props.getProperty("application.test.uri-base-test");
