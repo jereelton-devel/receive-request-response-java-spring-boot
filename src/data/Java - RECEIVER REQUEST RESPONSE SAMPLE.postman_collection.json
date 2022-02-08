@@ -219,7 +219,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"c9309ef7c0bb931b3f653f952af7d647\",\n    \"name\": \"Henrique da Silva\",\n    \"active\": \"no\"\n}",
+							"raw": "{\n    \"id\": \"b93e370cb6ec561a01de9b62dc83bbae\",\n    \"name\": \"Carlos Pereira\",\n    \"active\": \"no\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -281,7 +281,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8081/api/customers/web_client/e00507c48439d8dae2fb2e31326cc356",
+							"raw": "http://localhost:8081/api/customers/web_client/b93e370cb6ec561a01de9b62dc83bbae",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -291,7 +291,7 @@
 								"api",
 								"customers",
 								"web_client",
-								"e00507c48439d8dae2fb2e31326cc356"
+								"b93e370cb6ec561a01de9b62dc83bbae"
 							]
 						}
 					},
@@ -310,7 +310,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"2dde3fe6a8887910598a75d50da97fd1\",\n    \"name\": \"Isaias Marcondes\",\n    \"active\": \"no\"\n}\n",
+							"raw": "{\n    \"id\": \"b93e370cb6ec561a01de9b62dc83bbae\",\n    \"name\": \"Carlos Pereira Nunes\",\n    \"active\": \"no\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -318,7 +318,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/customers/web_client/2dde3fe6a8887910598a75d50da97fd1",
+							"raw": "http://localhost:8081/api/customers/web_client/b93e370cb6ec561a01de9b62dc83bbae",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -328,7 +328,7 @@
 								"api",
 								"customers",
 								"web_client",
-								"2dde3fe6a8887910598a75d50da97fd1"
+								"b93e370cb6ec561a01de9b62dc83bbae"
 							]
 						}
 					},
@@ -355,7 +355,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/customers/web_client/744523e0aad5d46ef0cee63e74e951f4",
+							"raw": "http://localhost:8081/api/customers/web_client/b93e370cb6ec561a01de9b62dc83bbae",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -365,7 +365,7 @@
 								"api",
 								"customers",
 								"web_client",
-								"744523e0aad5d46ef0cee63e74e951f4"
+								"b93e370cb6ec561a01de9b62dc83bbae"
 							]
 						}
 					},
@@ -383,7 +383,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8081/api/customers/web_client/2dde3fe6a8887910598a75d50da97fd1",
+							"raw": "http://localhost:8081/api/customers/web_client/b93e370cb6ec561a01de9b62dc83bbae",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -393,13 +393,40 @@
 								"api",
 								"customers",
 								"web_client",
-								"2dde3fe6a8887910598a75d50da97fd1"
+								"b93e370cb6ec561a01de9b62dc83bbae"
 							]
 						}
 					},
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Find All - Wrong Request",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ZGFmOTg1NDNjNDg3YWY2Y2ViMjMwY2FlMDAyYzkyZmQ6ODk3OTRiNjIxYTMxM2JiNTllZWQwZDlmMGY0ZTgyMDU=",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/customers/novidade",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"customers",
+						"novidade"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

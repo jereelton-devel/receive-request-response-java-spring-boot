@@ -6,7 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
+import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 @Configuration
 public class WebFluxConfig implements WebFluxConfigurer {
@@ -22,5 +24,18 @@ public class WebFluxConfig implements WebFluxConfigurer {
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .defaultHeader(HttpHeaders.AUTHORIZATION, basicAuth)
                 .build();
+
     }
+
+    private ExchangeFilterFunction logResponseStatus() {
+        return ExchangeFilterFunction.ofResponseProcessor(clientResponse -> {
+            System.out.println("Response:  " + clientResponse);
+            System.out.println("Response Status:  " + clientResponse.statusCode());
+            System.out.println("Response Raw Status:  " + clientResponse.rawStatusCode());
+            System.out.println("Response Headers:  " + clientResponse.headers().asHttpHeaders());
+            System.out.println("Response Reason:  " + clientResponse.statusCode().getReasonPhrase());
+            return Mono.just(clientResponse);
+        });
+    }
+
 }

@@ -20,11 +20,21 @@ import java.util.Properties;
 public abstract class AbstractTest {
 
     protected final Properties props = Helpers.loadProps();
-    protected final String authRequest = props.getProperty("application.basic-authorization");
+
+    protected final String authRequest = props.getProperty("application.basic-authorization-local");
     protected final String invalidAuthRequest = props.getProperty("application.test.basic-authorization-invalid");
-    protected final String uriBaseTest = props.getProperty("application.test.uri-base-test");
-    protected final String uriWrongTest = props.getProperty("application.test.uri-base-test-wrong");
+
+    protected final String uriBaseTestRt = props.getProperty("application.test.uri-base-test-rt");
+    protected final String uriBaseTestWc = props.getProperty("application.test.uri-base-test-wc");
+
+    protected final String urlRemoteBaseTest = props.getProperty("application.test.base-url-remote");
+    protected final String uriRemoteBaseTest = props.getProperty("application.test.base-uri-remote");
+    protected final String authRemoteRequest = props.getProperty("application.test.basic-authorization-remote");
+
+    protected final String uriWrongTest1 = props.getProperty("application.test.uri-base-test-wrong-1");
     protected final String uriWrongTest2 = props.getProperty("application.test.uri-base-test-wrong-2");
+    protected final String uriWrongTest3 = props.getProperty("application.test.uri-base-test-wrong-3");
+
     protected final String userIdFoundTest = props.getProperty("application.test.user-found");
     protected final String userIdNotFoundTest = props.getProperty("application.test.user-not-found");
 
@@ -37,10 +47,12 @@ public abstract class AbstractTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
-    protected void createCustomerBeforeTest(String customer_data) throws Exception {
+    protected void createCustomerBeforeTest(String customer_data, String resource) throws Exception {
+        String uri = uriBaseTestRt;
+        if (resource.equals("wc")) uri = uriBaseTestWc;
         mockMvc.perform(
                         MockMvcRequestBuilders
-                                .post(uriBaseTest)
+                                .post(uri)
                                 .content(customer_data)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept(MediaType.APPLICATION_JSON)
@@ -48,11 +60,12 @@ public abstract class AbstractTest {
                 ).andReturn();
     }
 
-    protected void rollbackTest(String md5Id) throws Exception {
-
+    protected void rollbackTest(String md5Id, String resource) throws Exception {
+        String uri = uriBaseTestRt;
+        if (resource.equals("wc")) uri = uriBaseTestWc;
         mockMvc.perform(
                         MockMvcRequestBuilders
-                                .delete(uriBaseTest+"/"+md5Id)
+                                .delete(uri+"/"+md5Id)
                                 .header("Authorization", authRequest)
                 ).andReturn();
     }

@@ -39,40 +39,38 @@ public abstract class HttpHandler {
         return new HttpComponentsClientHttpRequestFactory(httpClient);
     }
 
-    protected JSONObject setResponseClientError(String strMessage, JSONObject jsonMessage) {
+    private JSONObject defaultBodyJsonResponseError(Integer status, String message, String origin) {
         jsonResponse.clear();
         jsonResponse.appendField("status", "error");
-        if (!strMessage.equals("") && jsonMessage.size() == 0) {
-            jsonResponse.appendField("responseText", strMessage);
+        jsonResponse.appendField("code", status);
+        JSONObject tryJson = Helpers.stringToJson(message);
+        if (!origin.equals("vendor")) {
+            if (tryJson.size() == 0) {
+                jsonResponse.appendField("response", message);
+            } else {
+                jsonResponse.appendField("response", tryJson);
+            }
+        } else {
+            if (tryJson.size() == 0) {
+                jsonResponse.appendField("vendorResponse", message);
+            } else {
+                jsonResponse.appendField("vendorResponse", Helpers.stringToJson(message));
+            }
         }
-        jsonResponse.appendField("responseJson", jsonMessage);
-        jsonResponse.appendField("origin", "application");
-        return jsonMessage;
+        jsonResponse.appendField("origin", origin);
+        return jsonResponse;
     }
 
-    protected ResponseEntity<?> httpRequestClientException(HttpClientErrorException except) {
-
-        int statusCodeRaw = except.getRawStatusCode();
-        String statusCode = String.valueOf(except.getStatusCode());
-        String strMessage = except.getResponseBodyAsString();
-        JSONObject jsonMessage = Helpers.stringToJson(strMessage);
-
-        return ResponseEntity.status(HttpStatus.valueOf(statusCodeRaw)).body(
-                setResponseClientError(strMessage, jsonMessage)
-        );
-
+    private JSONObject setResponseServerError(Integer status, String message) {
+        return defaultBodyJsonResponseError(status, message, "vendor");
     }
 
-    protected JSONObject setResponseServerError(String strMessage, JSONObject jsonMessage) {
-        jsonResponse.clear();
-        jsonResponse.appendField("status", "error");
-        jsonResponse.appendField("about", "This error is from server");
-        if (!strMessage.equals("") && jsonMessage.size() == 0) {
-            jsonResponse.appendField("responseText", strMessage);
-        }
-        jsonResponse.appendField("responseJson", jsonMessage);
-        jsonResponse.appendField("origin", "server");
-        return jsonMessage;
+    private JSONObject setResponseClientError(Integer status, String message) {
+        return defaultBodyJsonResponseError(status, message, "application");
+    }
+
+    private JSONObject setAppException(Integer status, String message) {
+        return defaultBodyJsonResponseError(status, message, "consumer");
     }
 
     protected ResponseEntity<?> httpRequestServerException(HttpServerErrorException except) {
@@ -81,30 +79,24 @@ public abstract class HttpHandler {
         String strMessage = except.getResponseBodyAsString();
         JSONObject jsonMessage = Helpers.stringToJson(strMessage);
 
-        return ResponseEntity.status(HttpStatus.valueOf(statusCodeRaw)).body(
-                setResponseServerError(strMessage, jsonMessage)
-        );
+        return ResponseEntity.status(HttpStatus.valueOf(statusCodeRaw))
+                .body(setResponseServerError(statusCodeRaw, strMessage));
 
     }
 
-    protected JSONObject setAppException(Exception exceptionMessage) {
-        jsonResponse.clear();
-        jsonResponse.appendField("status", "error");
-        jsonResponse.appendField("message", "Occurs an error not expected");
-        jsonResponse.appendField("exception", exceptionMessage.toString());
-        return jsonResponse;
+    protected ResponseEntity<?> httpRequestClientException(HttpClientErrorException except) {
+        int statusCodeRaw = except.getRawStatusCode();
+        String statusCode = String.valueOf(except.getStatusCode());
+        String strMessage = except.getResponseBodyAsString();
+        JSONObject jsonMessage = Helpers.stringToJson(strMessage);
+
+        return ResponseEntity.status(HttpStatus.valueOf(statusCodeRaw))
+                .body(setResponseClientError(statusCodeRaw, strMessage));
+
     }
 
     protected ResponseEntity<?> appException(Exception except) {
-        return ResponseEntity.status(HttpStatus.valueOf(500)).body(setAppException(except));
-
-    }
-
-    protected void setResponseSuccess(Object message, Object data) {
-        jsonResponse.clear();
-        jsonResponse.appendField("data", data);
-        jsonResponse.appendField("message", message);
-        jsonResponse.appendField("status", "success");
+        return ResponseEntity.status(500).body(setAppException(500, except.getMessage()));
     }
 
 }

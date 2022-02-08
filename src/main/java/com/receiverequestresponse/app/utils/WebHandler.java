@@ -16,7 +16,31 @@ public abstract class WebHandler {
         this.jsonResponse = new JSONObject();
     }
 
-    private JSONObject defJsonResponse(Integer status, String message, String origin) {
+    /**
+     * Success Response
+     */
+
+    private JSONObject defaultBodyResponse(Integer status, String message, JSONObject jsonObject) {
+        jsonResponse.clear();
+        jsonResponse.appendField("status", "success");
+        jsonResponse.appendField("code", status);
+        jsonResponse.appendField("message", message);
+        jsonResponse.appendField("data", jsonObject);
+        return jsonResponse;
+    }
+
+    protected ResponseEntity<?> defaultResponseJson(String object) {
+        JSONObject jsonObject = Helpers.stringToJson(object);
+        Number status = jsonObject.getAsNumber("code");
+        String data = jsonObject.getAsString("message");
+        return ResponseEntity.status(status.intValue()).body(defaultBodyResponse(status.intValue(), data, jsonObject));
+    }
+
+    /**
+     * Errors Response
+     */
+
+    private JSONObject defaultBodyErrorResponse(Integer status, String message, String origin) {
         jsonResponse.clear();
         jsonResponse.appendField("status", "error");
         jsonResponse.appendField("code", status);
@@ -30,15 +54,15 @@ public abstract class WebHandler {
     }
 
     private JSONObject setConsumerError(HttpStatus status, String message) {
-        return defJsonResponse(status.value(), message, "consumer");
+        return defaultBodyErrorResponse(status.value(), message, "consumer");
     }
 
     private JSONObject setVendorError(Integer status, String message) {
-        return defJsonResponse(status, message, "vendor");
+        return defaultBodyErrorResponse(status, message, "vendor");
     }
 
     private JSONObject setApplicationError(Integer status, String message) {
-        return defJsonResponse(status, message, "application");
+        return defaultBodyErrorResponse(status, message, "application");
     }
 
     protected ResponseEntity<?> consumerError(HttpStatus status, String data) {

@@ -54,10 +54,13 @@ public class CustomerRestTemplateService extends HttpHandler {
             }
 
         } catch (HttpServerErrorException sex) {
+            System.out.println("HttpServerErrorException: " + sex.getMessage());
             return httpRequestServerException(sex);
         } catch (HttpClientErrorException cex) {
+            System.out.println("HttpClientErrorException: " + cex.getMessage());
             return httpRequestClientException(cex);
         } catch (Exception gex) {
+            System.out.println("Exception: " + gex.getMessage());
             return appException(gex);
         }
 
@@ -83,7 +86,7 @@ public class CustomerRestTemplateService extends HttpHandler {
         return search("");
     }
 
-    public Object save(HttpServletRequest headers, CustomerEntity customer) {
+    public ResponseEntity<?> save(HttpServletRequest headers, CustomerEntity customer) {
         if (!AccessControlService.authorization(headers)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
         }
@@ -91,7 +94,7 @@ public class CustomerRestTemplateService extends HttpHandler {
         return dispatch("POST", "", httpEntity);
     }
 
-    public Object update(HttpServletRequest headers, String customer_id, JSONObject customer_data) {
+    public ResponseEntity<?> update(HttpServletRequest headers, String customer_id, JSONObject customer_data) {
         if (!AccessControlService.authorization(headers)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
         }
@@ -107,7 +110,7 @@ public class CustomerRestTemplateService extends HttpHandler {
         return dispatch("DELETE", customer_id, httpEntity);
     }
 
-    public Object patch(HttpServletRequest headers, String customer_id, JSONObject customer_data) {
+    public ResponseEntity<?> patch(HttpServletRequest headers, String customer_id, JSONObject customer_data) {
         if (!AccessControlService.authorization(headers)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
         }

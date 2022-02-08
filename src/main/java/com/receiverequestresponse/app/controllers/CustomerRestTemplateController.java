@@ -56,7 +56,7 @@ public class CustomerRestTemplateController extends WebHandler {
             })
     })
     @PostMapping(path = "/api/customers/rest_template")
-    public Object createByRestTemplate(HttpServletRequest headers, @Valid @RequestBody(required = false) CustomerEntity customer) {
+    public ResponseEntity<?> createByRestTemplate(HttpServletRequest headers, @Valid @RequestBody(required = false) CustomerEntity customer) {
         return customerRestTemplateService.save(headers, customer);
     }
 
@@ -131,7 +131,7 @@ public class CustomerRestTemplateController extends WebHandler {
             })
     })
     @PutMapping(path = "/api/customers/rest_template/{customer_id}")
-    public Object updateByRestTemplate(
+    public ResponseEntity<?> updateByRestTemplate(
             HttpServletRequest headers,
             @PathVariable("customer_id") String customer_id,
             @Valid @RequestBody(required = false) JSONObject customer_data) {
@@ -186,7 +186,7 @@ public class CustomerRestTemplateController extends WebHandler {
             })
     })
     @PatchMapping(path = "/api/customers/rest_template/{customer_id}")
-    public Object patchByRestTemplate(
+    public ResponseEntity<?> patchByRestTemplate(
             HttpServletRequest headers,
             @PathVariable("customer_id") String customer_id,
             @Valid @RequestBody(required = false) JSONObject customer_data) {

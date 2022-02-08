@@ -1,6 +1,7 @@
 package com.receiverequestresponse.app.services;
 
 import com.receiverequestresponse.app.entities.CustomerEntity;
+import com.receiverequestresponse.app.repositories.CustomerRepository;
 import com.receiverequestresponse.app.utils.Helpers;
 import com.receiverequestresponse.app.utils.WebHandler;
 import net.minidev.json.JSONObject;
@@ -20,9 +21,12 @@ public class CustomerWebClientService extends WebHandler {
     private static final int LOCAL_TIMER = 10;
     private final String baseUri;
 
+    private final CustomerRepository customerRepository;
+
     @Autowired
-    public CustomerWebClientService() {
+    public CustomerWebClientService(CustomerRepository customerRepository) {
         baseUri = Helpers.loadProps().getProperty("application.base-uri-remote");
+        this.customerRepository = customerRepository;
     }
 
     @Autowired
@@ -46,8 +50,7 @@ public class CustomerWebClientService extends WebHandler {
         return wc
                 .body(Mono.just(data), CustomerEntity.class)
                 .retrieve()
-                .bodyToMono(Object.class)
-                .timeout(Duration.ofSeconds(LOCAL_TIMER));
+                .bodyToMono(Object.class);
     }
 
     public Flux<Object> findAll(HttpServletRequest headers) {
